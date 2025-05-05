@@ -77,6 +77,19 @@ class Player {
     //   Once the timer reaches 0, the damaged state is cleared.
     // These timers ensure that the player has temporary protection after taking damage
     // and provides visual feedback (e.g., blinking effect) during these states.
+    if (invincible) {
+      invincibilityTimer--;
+      if (invincibilityTimer <= 0) {
+        invincible=false;
+      }
+    }
+
+    if (damaged) {
+      damageTimer--;
+      if (damageTimer <= 0) {
+        damaged=false;
+      }
+    }
   }
   // End of stage 3-1
 
