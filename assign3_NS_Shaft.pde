@@ -69,7 +69,7 @@ void initializePlatforms() {
   // stage 1-1: generate 10 platforms with random positions on the screen
   for (int i = 0; i < NUM_PLATFORMS; i++) {
     // you need to change this line to create a new platform object with random horizontal positions, while distributed evenly in vertical space
-    platforms[i] = new Platform(random(0, width - 80), (i+1) * player.h + 60); 
+    platforms[i] = new Platform(random(0, width - 80), (i+1) * player.h + 60);
   }
   // End of stage 1-1
 }
@@ -78,20 +78,20 @@ void initializePlatforms() {
 void draw() {
   scrollBackground(); // Scroll the background continuously
 
-  switch (gameState){
-    case GAME_RUN:
-      runGame();
-      break;
-    case GAME_WIN:
-      winGame();
-      break;
-    case GAME_OVER:
-      endGame();
-      break;
+  switch (gameState) {
+  case GAME_RUN:
+    runGame();
+    break;
+  case GAME_WIN:
+    winGame();
+    break;
+  case GAME_OVER:
+    endGame();
+    break;
   }
 }
 
-void runGame(){
+void runGame() {
   for (Platform platform : platforms) {
     platform.update(); // Update the platform's position
     platform.display(); // Display the platform on the screen
@@ -142,7 +142,7 @@ void displayHealthAndTimer() {
 // Handles the win condition
 void winGame() {
   displayWinImage(); // Show the win image
-  displayWinMessage(); // Show a congratulatory message 
+  displayWinMessage(); // Show a congratulatory message
 }
 
 // Handles the end of the game
@@ -194,10 +194,8 @@ void displayWinMessage() {
 void keyPressed() {
   if (key == 'a' || key == 'A') {
     // Move left, call player.setMovement() to set the moveDir
-
   } else if (key == 'd' || key == 'D') {
     // Move right, call player.setMovement() to set the moveDir
-
   } else if (key == 'r' || key == 'R') {
     restartGame();
   }
@@ -206,9 +204,8 @@ void keyPressed() {
 void keyReleased() {
   if (key == 'a' || key == 'A' || key == 'd' || key == 'D') {
     // Stop moving, call player.setMovement() to set the moveDir
-
   }
-} 
+}
 // End of stage 2-1
 
 void restartGame() {
