@@ -16,7 +16,7 @@ class Player {
 
   void update() {
     if (health <= 0) return; // Stop updating if the player is dead
-    
+
     if (moveDir != 0) {
       x += moveDir * xSpeed; // Move the player horizontally
       x = constrain(x, 0, width - w); // Keep the player within the screen bounds
@@ -32,9 +32,17 @@ class Player {
 
   // Stage 2-2: Check for collisions with platforms
   void handlePlatformCollision() {
-   
-
+    if (ySpeed > 0) {
+      for (Platform p : platforms) {
+        if (AABB(x, y + h - feetOffset, w, feetOffset, p.x, p.y, p.w, p.h)) {
+          y = p.y - h;
+          ySpeed = 0;
+          break;
+        }
+      }
+    }
   }
+
   // End of stage 2-2
 
   boolean AABB(float ax, float ay, float aw, float ah, float bx, float by, float bw, float bh) {
@@ -46,16 +54,16 @@ class Player {
   void handleCeilingBottomCollision() {
     // When the player collides with the ceiling or bottom of the screen:
     // keep the player at the top and subtract health by 1
-   
 
-    // Stage 3-2: 
+
+    // Stage 3-2:
     // This block checks if the player is not invincible and not already in a damaged state:
     // - If both conditions are true, the player's health is reduced by 1.
     // - The player is then marked as damaged, and the damage timer is set to the predefined
     //   DAMAGE_BLINK_DURATION. This ensures the player enters a temporary "damaged" state
     //   with visual feedback (e.g., blinking effect) and avoids taking consecutive damage
     //   immediately.
-    
+
     // End of stage 3-2
   }
   // End of stage 2-3
@@ -69,14 +77,11 @@ class Player {
     //   Once the timer reaches 0, the damaged state is cleared.
     // These timers ensure that the player has temporary protection after taking damage
     // and provides visual feedback (e.g., blinking effect) during these states.
-
   }
   // End of stage 3-1
 
   // Stage 3-3: Cycle through animation frames based on timer
   void updateAnimation() {
-    
-    
   }
   // End of stage 3-3
 
@@ -107,5 +112,4 @@ class Player {
       y = height;
     }
   }
-
 }
