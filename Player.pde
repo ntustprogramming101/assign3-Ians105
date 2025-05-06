@@ -98,6 +98,11 @@ class Player {
 
   // Stage 3-3: Cycle through animation frames based on timer
   void updateAnimation() {
+    if (moveDir == 0) {
+      animatedFrameIndex = 0;
+    } else {
+      animatedFrameIndex = (frameCount / ANIMATION_INTERVAL) % 2;
+    }
   }
   // End of stage 3-3
 
