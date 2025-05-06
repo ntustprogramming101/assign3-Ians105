@@ -54,16 +54,19 @@ class Player {
     // When the player collides with the ceiling or bottom of the screen:
     // keep the player at the top and subtract health by 1
     if (y<0 || y+h>height) {
-      health-=1;
+      // Stage 3-2:
+      // This block checks if the player is not invincible and not already in a damaged state:
+      // - If both conditions are true, the player's health is reduced by 1.
+      // - The player is then marked as damaged, and the damage timer is set to the predefined
+      //   DAMAGE_BLINK_DURATION. This ensures the player enters a temporary "damaged" state
+      //   with visual feedback (e.g., blinking effect) and avoids taking consecutive damage
+      //   immediately.
+      if (invincible==false && damaged==false) {
+        health-=1;
+        damaged = true;
+        damageTimer=DAMAGE_BLINK_DURATION;
+      }
     }
-    // Stage 3-2:
-    // This block checks if the player is not invincible and not already in a damaged state:
-    // - If both conditions are true, the player's health is reduced by 1.
-    // - The player is then marked as damaged, and the damage timer is set to the predefined
-    //   DAMAGE_BLINK_DURATION. This ensures the player enters a temporary "damaged" state
-    //   with visual feedback (e.g., blinking effect) and avoids taking consecutive damage
-    //   immediately.
-
     // End of stage 3-2
   }
   // End of stage 2-3
